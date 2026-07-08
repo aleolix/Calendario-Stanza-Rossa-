@@ -61,8 +61,56 @@ button {
 
 <script type="module">
 
-// qui inseriremo Firebase nel prossimo passaggio
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBZq_O564_uAGDYm9SoiON7gd3L6Yh-zo4",
+  authDomain: "casa-vacanze-calendario.firebaseapp.com",
+  projectId: "casa-vacanze-calendario",
+  storageBucket: "casa-vacanze-calendario.firebasestorage.app",
+  messagingSenderId: "1044832318827",
+  appId: "1:1044832318827:web:8eefb4b203e731bce3082e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.salvaPrenotazione = async function() {
+
+  const famiglia = document.getElementById("famiglia").value;
+  const arrivo = document.getElementById("arrivo").value;
+  const partenza = document.getElementById("partenza").value;
+
+  await addDoc(collection(db, "prenotazioni"), {
+    famiglia: famiglia,
+    arrivo: arrivo,
+    partenza: partenza
+  });
+
+  alert("Prenotazione salvata!");
+};
+
+
+onSnapshot(collection(db, "prenotazioni"), (snapshot) => {
+
+  const lista = document.getElementById("lista");
+  lista.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+
+    const p = doc.data();
+
+    lista.innerHTML += `
+      <div class="prenotazione">
+      👤 ${p.famiglia}<br>
+      📅 ${p.arrivo} → ${p.partenza}
+      </div>
+    `;
+
+  });
+
+});
 </script>
 
 </body>

@@ -87,13 +87,27 @@ let calendario;
 
 document.addEventListener("DOMContentLoaded", function() {
 
- calendario = new FullCalendar.Calendar(
- document.getElementById("calendar"),
+calendario = new FullCalendar.Calendar(
+document.getElementById("calendar"),
  {
   initialView: "dayGridMonth",
   locale: "it",
   height: "auto",
-  events: []
+  events: [],
+
+  eventClick: function(info) {
+
+    const id = info.event.id;
+    const nome = info.event.title;
+
+    if (confirm("Cancellare la prenotazione di " + nome + "?")) {
+      
+      cancellaPrenotazione(id);
+
+    }
+
+  }
+
  });
 
  calendario.render();

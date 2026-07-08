@@ -80,7 +80,22 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+function coloreDaNome(nome) {
+  let hash = 0;
 
+  for (let i = 0; i < nome.length; i++) {
+    hash = nome.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let colore = "#";
+
+  for (let i = 0; i < 3; i++) {
+    let valore = (hash >> (i * 8)) & 255;
+    colore += ("00" + valore.toString(16)).slice(-2);
+  }
+
+  return colore;
+}
 
 let calendario;
 
@@ -153,7 +168,8 @@ if (occupato) {
 await addDoc(collection(db,"prenotazioni"),{
  nome,
  arrivo,
- partenza
+ partenza,
+ colore: coloreDaNome(nome)
 });
 
 

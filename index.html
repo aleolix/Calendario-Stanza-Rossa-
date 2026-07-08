@@ -65,7 +65,8 @@ input, button {
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZq_O564_uAGDYm9SoiON7gd3L6Yh-zo4",
@@ -161,14 +162,15 @@ const p=doc.data();
 
 eventi.push({
 
-title:p.nome,
+id: doc.id,
 
-start:p.arrivo,
+title: p.nome,
 
-end:p.partenza
+start: p.arrivo,
+
+end: p.partenza
 
 });
-
 
 });
 
@@ -184,7 +186,17 @@ if(calendario){
 
 });
 
+window.cancellaPrenotazione = async function(id){
 
+if(confirm("Vuoi cancellare questa prenotazione?")){
+
+await deleteDoc(doc(db,"prenotazioni",id));
+
+alert("Prenotazione cancellata");
+
+}
+
+};
 </script>
 
 </body>

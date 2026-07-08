@@ -65,8 +65,7 @@ input, button {
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+import { getFirestore, collection, addDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZq_O564_uAGDYm9SoiON7gd3L6Yh-zo4",
@@ -106,6 +105,34 @@ window.salvaPrenotazione = async function(){
 const nome = document.getElementById("nome").value;
 const arrivo = document.getElementById("arrivo").value;
 const partenza = document.getElementById("partenza").value;
+
+if (!nome || !arrivo || !partenza) {
+  alert("Compila tutti i campi");
+  return;
+}
+
+let occupato = false;
+
+const prenotazioni = await getDocs(collection(db,"prenotazioni"));
+
+prenotazioni.forEach((doc)=>{
+
+const p = doc.data();
+
+if (arrivo < p.partenza && partenza > p.arrivo) {
+  occupato = true;
+}
+
+});
+
+
+if (occupato) {
+
+ alert("Attenzione: queste date sono già occupate");
+
+ return;
+
+}
 
 
 await addDoc(collection(db,"prenotazioni"),{

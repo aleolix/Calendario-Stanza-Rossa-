@@ -196,6 +196,10 @@ await addDoc(collection(db,"prenotazioni"),{
  colore: coloreDaNome(nome)
 });
 
+if (calendario) {
+  calendario.gotoDate(arrivo);
+}
+
 
 alert("Prenotazione salvata!");
 

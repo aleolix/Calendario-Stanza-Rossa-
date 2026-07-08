@@ -27,11 +27,19 @@ h1 {
   max-width: 500px;
   margin: 20px auto;
 }
-
 input, button {
   width: 100%;
+  box-sizing: border-box;
   padding: 10px;
   margin: 5px 0;
+}
+
+button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 </style>
@@ -43,7 +51,8 @@ input, button {
 
 <div class="form">
 
-<input id="nome" placeholder="Nome">
+<label>Nome</label>
+<input id="nome" placeholder="Inserisci nome">
 
 <label>Arrivo</label>
 <input id="arrivo" type="date">

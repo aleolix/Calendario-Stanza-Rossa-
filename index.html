@@ -196,9 +196,8 @@ await addDoc(collection(db,"prenotazioni"),{
  colore: coloreDaNome(nome)
 });
 
-if (calendario) {
-  calendario.gotoDate(arrivo);
-}
+const dataPrenotazione = new Date(arrivo + "T12:00:00");
+calendario.gotoDate(dataPrenotazione);
 
 
 alert("Prenotazione salvata!");

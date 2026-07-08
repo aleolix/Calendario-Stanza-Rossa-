@@ -43,7 +43,7 @@ input, button {
 
 <div class="form">
 
-<input id="famiglia" placeholder="Nome famiglia">
+<input id="nome" placeholder="Nome">
 
 <label>Arrivo</label>
 <input id="arrivo" type="date">
@@ -103,13 +103,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 window.salvaPrenotazione = async function(){
 
-const famiglia = document.getElementById("famiglia").value;
+const nome = document.getElementById("nome").value;
 const arrivo = document.getElementById("arrivo").value;
 const partenza = document.getElementById("partenza").value;
 
 
 await addDoc(collection(db,"prenotazioni"),{
- famiglia,
+ nome,
  arrivo,
  partenza
 });
@@ -134,7 +134,7 @@ const p=doc.data();
 
 eventi.push({
 
-title:p.famiglia,
+title:p.nome,
 
 start:p.arrivo,
 

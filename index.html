@@ -145,6 +145,16 @@ if (!nome || !arrivo || !partenza) {
   alert("Compila tutti i campi");
   return;
 }
+  
+if (partenza <= arrivo) {
+  alert("La data di partenza deve essere successiva alla data di arrivo");
+  return;
+}
+
+if (!nome || !arrivo || !partenza) {
+  alert("Compila tutti i campi");
+  return;
+}
 
 let occupato = false;
 
@@ -204,6 +214,9 @@ title: p.nome,
 start: p.arrivo,
 
 end: p.partenza
+
+backgroundColor: p.colore,
+borderColor: p.colore
 
 });
 

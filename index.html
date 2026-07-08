@@ -3,72 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendario Casa Vacanze</title>
+
+<title>Stanza Rossa</title>
 
 <style>
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
-  text-align: center;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
 h1 {
-  color: #333;
+  text-align: center;
 }
 
-.calendar {
-  max-width: 500px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 16px;
 }
 
-.day {
+button {
+  cursor: pointer;
+}
+
+.prenotazione {
   border: 1px solid #ccc;
-  padding: 15px 5px;
+  padding: 10px;
+  margin-top: 10px;
 }
-
-.header {
-  font-weight: bold;
-  background: #eee;
-}
-
 </style>
+
 </head>
 
 <body>
 
-<h1>🏡 Calendario Casa Vacanze</h1>
+<h1>🏡 Stanza Rossa</h1>
 
-<h2>Luglio 2026</h2>
+<h2>Nuova prenotazione</h2>
 
-<div class="calendar">
-<div class="day header">Lun</div>
-<div class="day header">Mar</div>
-<div class="day header">Mer</div>
-<div class="day header">Gio</div>
-<div class="day header">Ven</div>
-<div class="day header">Sab</div>
-<div class="day header">Dom</div>
+<input id="famiglia" placeholder="Nome famiglia">
 
-<div class="day"></div>
-<div class="day"></div>
-<div class="day">1</div>
-<div class="day">2</div>
-<div class="day">3</div>
-<div class="day">4</div>
-<div class="day">5</div>
+<label>Arrivo</label>
+<input id="arrivo" type="date">
 
-<div class="day">6</div>
-<div class="day">7</div>
-<div class="day">8</div>
-<div class="day">9</div>
-<div class="day">10</div>
-<div class="day">11</div>
-<div class="day">12</div>
+<label>Partenza</label>
+<input id="partenza" type="date">
 
-</div>
+<button onclick="salvaPrenotazione()">Prenota</button>
+
+<h2>Prenotazioni</h2>
+
+<div id="lista"></div>
+
+
+<script type="module">
+
+// qui inseriremo Firebase nel prossimo passaggio
+
+</script>
 
 </body>
 </html>
